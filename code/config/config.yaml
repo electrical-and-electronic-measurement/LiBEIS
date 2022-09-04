@@ -1,0 +1,18 @@
+#Table where the frequencies and frequencies IDs are stored
+freq_table_src: "../data/frequencies.csv"
+
+#Table where each measurement point is stored
+meas_table_src: "../data/impedance.csv"
+
+#Relevant fields in the measurement table
+battery_id_field: "BATTERY_ID"
+measure_id_field: "MEASURE_ID"
+frequency_id_field: "FREQUENCY_ID"
+soc_field: "SOC"
+impedance_field: "IMPEDANCE_VALUE"
+
+#Store the results of the classification experiments here
+classification_results_out: '../results/classification-results.txt'
+
+#Store the pca scatter plots here
+pca_scatter_plots_out: '../results/scatter-plots.svg'

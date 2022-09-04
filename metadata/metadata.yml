@@ -1,0 +1,29 @@
+metadata_version: 1
+name: Broadband Electrochemical Impedance Spectroscopy of Lithium-Ion Batteries
+description: |-
+  Software for computation of Broadband Electrochemical Impedance Spectroscopy of Lithium-Ion Batteries at different states of charge.
+
+  Input: voltage and current data acquisition
+  Output: EIS value
+tags:
+- Electrochemical Impedance Spectroscopy
+- battery
+- MATLAB
+- state of charge
+- impedance
+authors:
+- name: Alessio De Angelis
+  affiliations:
+  - name: University of Perugia
+- name: Emanuele Buchicchio
+  affiliations:
+  - name: University of Perugia
+- name: Francesco Santoni
+  affiliations:
+  - name: University of Perugia
+- name: Paolo Carbone
+  affiliations:
+  - name: University of Perugia
+corresponding_contributor:
+  name: Emanuele Buchicchio
+  email: emanuele.buchicchio@studenti.unipg.it

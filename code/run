@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -ex
+
+# This is the master script for the capsule. When you click "Reproducible Run", the code in this file will execute.
+# 1. compute EIS
+matlab -nodisplay -r "addpath(genpath('.')); compute_impedance_values"
+
+# 2. Export EIS data into  impedence.csv and frequency.csv files in the /results folder
+python3 export_eis_data.py
+
+# 3. Fit the euivalnet circuit model
+matlab -nodisplay -r "addpath(genpath('.')); fit_equivalent_circuit_model"
+
+#4 Export the fitted parameters into paramters.csv in the /results folder
+python3 export_model_data.py
+
+#5 Perform LDA and PCA and save the scattering plots in reults folder
+python3 lda_pca_scatter_plots.py
+
+#6 train and score different SOC classification models
+python3 classification.py
