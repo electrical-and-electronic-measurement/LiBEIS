@@ -1,6 +1,8 @@
 # LiBEIS
 
-Software tool for Electrochemical Impedance Spectroscopy (EIS) computation on rechargable litium batteries
+LiBEIS is a software tool for Electrochemical Impedance Spectroscopy (EIS) computation on rechargable litium batteries (LiB)
+
+See also [https://electrical-and-electronic-measurement.github.io/LiBEIS/](https://electrical-and-electronic-measurement.github.io/LiBEIS/)
 
 ## Data
 
@@ -29,10 +31,9 @@ There are two options to use LiBEIS:
 1. from a docker container image (see the docker file in `/environment` folder)
 1. locally from the `/code` folder:
 
-
 ### Run Locally 
+
 1. Move to `/code`
-   
 2. run `matlab -nodisplay -r "addpath(genpath('.'))`; to compute_impedance_values.
 3. run `python3 export_eis_data.py` to generate the EIS dataset files (impedence.csv and frequency.csv). A copy of these files can also be download from  https://data.mendeley.com/datasets/mbv3bx847g
 4. run `python3 lda_pca_scatter_plots.py`to Perform LDA and PCA and save the scattering plots in reults folder
