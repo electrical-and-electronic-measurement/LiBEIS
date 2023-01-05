@@ -32,7 +32,7 @@ def read_measurement_table(config_file):
     """
     
     #Read the configuration
-    with open('./config/config.yaml') as cfg_file:
+    with open(config_file) as cfg_file:
         config = yaml.load(stream = cfg_file, Loader = yaml.FullLoader)
     
     #Map the field names
@@ -100,6 +100,56 @@ def get_patterns(meas_table_wide, impedance_col_name, mode, **kwargs):
     
     return patterns
 
+
+def get_xy_values(row, mode):
+    """Get visual 2D visual rapresentation of an impedance values set
+    
+    Parameters
+    ----------
+    row : array of impedence values
+    mode : str
+        A string determining the way the visualization are computed from the
+        impedance values. Can be:
+            'module' -> x_values: index; y_values are the modules (abs) of the impedance values
+            'phase'  -> x_values: index; y_values are the phase (angle) of the impedance values
+            'module+phase' -> x_values: the modules (abs) of the impedance values; y_values the phase (angle) of the impedance values
+            'imag' -> x_values: index; y_values are the imaginary part  of the impedance values
+            'real' -> px_values: index; y_values are the real part  of the impedance values
+            'real+imag' -> x_values: the real part of the impedance values; y_values the imaginary of the impedance values
+    """
+    n_cols = len(row)
+    x_values = []
+    y_values = []
+    
+    if mode == 'module':
+        for col_index in range(0, n_cols):
+            x_values.append(col_index)
+            y_values.append(np.abs(row[col_index]))
+    elif mode == 'phase':
+        for col_index in range(0, n_cols):
+            x_values.append(col_index)
+            y_values.append(np.angle(row[col_index]))
+    elif mode == 'module+phase':
+        for col_index in range(0, int(n_cols/2)):
+            x_values.append(row[col_index])
+        for col_index in range(int(n_cols/2), n_cols):
+            y_values.append(row[col_index])
+    elif mode == 'imag':
+        for col_index in range(0, n_cols):
+            x_values.append(col_index)
+            y_values.append(np.imag(row[col_index]))
+    elif mode == 'real':
+        for col_index in range(0, n_cols):
+            x_values.append(col_index)
+            y_values.append(np.real(row[col_index]))
+    elif mode == 'real+imag':
+        for col_index in range(0, int(n_cols/2)):
+            x_values.append(row[col_index])
+        for col_index in range(int(n_cols/2), n_cols):
+            y_values.append(row[col_index])
+    else:
+        raise Exception(f'Pattern calculation mode *{mode}* not supported')
+    return [x_values,y_values]
 
 @dataclass
 class FeatureExtractionMode:
